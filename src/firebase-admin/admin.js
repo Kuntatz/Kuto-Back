@@ -1,13 +1,11 @@
 import admin from 'firebase-admin';
-import serviceAccount from '../config/serviceAccountKey.json';
 import DotEnv from 'dotenv';
 DotEnv.config();
 
 const defaultApplication = () => {
   const FIREBASE_PRIVATE_KEY = process.env.FIREBASE_PRIVATE_KEY;
-  console.info('FIREBASE_PRIVATE_KEY', FIREBASE_PRIVATE_KEY);
   return admin.initializeApp({
-    serviceAccount: {
+    credential: admin.credential.cert({
       type:                         process.env.FIREBASE_TYPE,
       project_id:                   process.env.FIREBASE_PROJECT_ID,
       private_key_id:               process.env.FIREBASE_PRIVATE_KEY_ID,
@@ -18,7 +16,7 @@ const defaultApplication = () => {
       token_uri:                    process.env.FIREBASE_TOKEN_URI,
       auth_provider_x509_cert_url:  process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
       client_x509_cert_url:         process.env.FIREBASE_CLIENT_X509_CERT_URL,
-    },
+    }),
     databaseURL: "https://testkuto.firebaseio.com"
   });
 }
