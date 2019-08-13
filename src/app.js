@@ -4,7 +4,6 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes';
-import admin from './firebase-admin/admin';
 
 const app = express();
 
