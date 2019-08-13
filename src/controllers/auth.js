@@ -20,12 +20,21 @@ export const verifyToken = async (req, res, next) => {
 export const signup = async (req, res) => {
   const { email, password } = req.body;
   console.info('admin', admin);
-  const user = await admin.auth().createUser({
-    email,
-    password,
-    disabled: false,
-    emailVerified: true,
-    displayName: 'John Doe'
-  });
-  console.info('user', user);
+  try {
+    const user = await admin.auth().createUser({
+      email,
+      password,
+      disabled: false,
+      emailVerified: true,
+      displayName: 'John Doe'
+    });
+    return res.send({
+      user
+    });
+  } catch(e) {
+    console.info('error signup', e);
+    return res.send({
+      error: e
+    });
+  }
 }
