@@ -4,6 +4,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes';
+import admin from './firebase-admin/admin';
 
 const app = express();
 
@@ -12,5 +13,5 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
 export default app;
