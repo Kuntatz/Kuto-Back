@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./src/bin/www",
     "server": "babel-node ./src/bin/www",
-    "server:prod": "babel-node ./dist/bin/www",
+    "server:prod": "node ./dist/bin/www",
     "dev": "NODE_ENV=development npm-run-all server",
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",
@@ -13,6 +13,8 @@
     "watch": "nodemon"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime": "^7.5.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.0.0",
@@ -29,6 +31,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "nodemon": "^1.19.1"
   },
